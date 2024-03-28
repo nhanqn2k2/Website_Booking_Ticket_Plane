@@ -1,0 +1,282 @@
+<section class="button-area">
+    <div class="container box_1170 border-top-generic">
+        <div class="button-group-area mt-10">
+            <a href="./searchflyteam" class="btn primary-border e-large">Thông tin chuyến bay</a>
+            <a href="./inforcustomer" class="btn success-border e-large">Thông tin khách hàng</a>
+            <a href="./service" class="btn primary-border e-large">Dịch vụ</a>
+            <a href="./payment" class="btn success-border e-large">Thanh toán</a>
+        </div>
+    </div>
+</section>
+<p style="display: none" class="typeTicket">{{ticketKhuHoi.type}}</p>
+
+<div class="col-lg-12">
+    <div class="row d-flex">
+        <div class="col-md-3">
+            <div class="row d-flex">
+                <div class="col-xl-12 col-lg-4 col-md-4 col-sm-6">
+                    <div class="card" style="border: 2px solid black">
+                        <div class="card-header text-center cardMotChieu" style="display: none">
+                            <large class="card-title" style="font-weight: bold; font-size: 20px;">Chuyến bay của bạn
+                            </large>
+                            <hr />
+                            <p class="">{{showTime ticketMotChieu.dayOfWeekMotChieu ticketMotChieu.day
+                                ticketMotChieu.month ticketMotChieu.year}}</p>
+                            <p style="display: none" id="mainIdTicketOneLine"></p>
+                            <p class="card-title" style="font-weight: bold;">
+                                <span>{{ticketMotChieu.fromPlaceMotChieu}}</span> <i class="fas fa-arrow-right"></i>
+                                <span>{{ticketMotChieu.toPlaceMotChieu}}</span> </large>
+                            <p style="font-weight: bold; font-size: 26px;"><i class="fas fa-plane"></i> FlyTeam</p>
+                            <p><span style="font-weight: bold;" class="timeStartOneLine"></span> <i
+                                    class="fas fa-arrow-right"></i> <span style="font-weight: bold;"
+                                    class="timeEndOneLine"></span></p>
+                            <button type="submit" class="btn">Đổi chuyến bay đi</button>
+                        </div>
+                        <div class="card-header text-center cardKhuHoi"
+                            style="border-top: 2px solid black; display: none">
+                            <p>{{showTime ticketKhuHoi.dayOfWeekKhuHoi ticketKhuHoi.day ticketKhuHoi.month
+                                ticketKhuHoi.year}}</p>
+                            <p style="display: none" id="mainIdTicketTwoLine"></p>
+                            <p class="card-title" style="font-weight: bold;"><span>{{ticketKhuHoi.fromPlaceKhuHoi}}</span> <i
+                                    class="fas fa-arrow-right"></i> <span>{{ticketKhuHoi.toPlaceKhuHoi}}</span> </large>
+                            <p style="font-weight: bold; font-size: 26px;"><i class="fas fa-plane"></i> FlyTeam</p>
+                            <p><span style="font-weight: bold;" class="timeStartTwoLine"></span> <i class="fas fa-arrow-right"></i> <span
+                                    style="font-weight: bold;" class="timeEndTwoLine"></span></p>
+                            <button type="submit" class="btn">Đổi chuyến bay về</button>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <button class="btn mt-3" id="accept">Xác nhận đặt vé</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="row d-flex">
+                <div class="col-xl-3">
+                    <div class="card">
+                        <div class="card-header text-center">
+                            <large class="card-title" style="font-weight: bold;">ABC</large>
+                            <p>35 tháng Một</p>
+                            <large class="card-title" style="font-weight: bold;">699,000 VNĐ</large>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3">
+                    <div class="card">
+                        <div class="card-header text-center">
+                            <large class="card-title" style="font-weight: bold;">Chủ nhật</large>
+                            <p>35 tháng Một</p>
+                            <large class="card-title" style="font-weight: bold;">699,000 VNĐ</large>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3">
+                    <div class="card">
+                        <div class="card-header text-center">
+                            <large class="card-title" style="font-weight: bold;">Chủ nhật</large>
+                            <p>35 tháng Một</p>
+                            <large class="card-title" style="font-weight: bold;">699,000 VNĐ</large>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3">
+                    <div class="card">
+                        <div class="card-header text-center">
+                            <large class="card-title" style="font-weight: bold;">Chủ nhật</large>
+                            <p>35 tháng Một</p>
+                            <large class="card-title" style="font-weight: bold;">699,000 VNĐ</large>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row d-flex mt-30 flex-row-reverse justify-content-center">
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
+                    <div class="card" style="background-color: #62A9FD; border-radius: 20%">
+                        <div class="card-header text-center">
+                            <p class="card-title" style="font-weight: bold; font-size: 20px">DANH SÁCH CÁC CHUYẾN BAY
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row d-flex mt-20">
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 mt-3">
+                    <div class="card" style="background-color: greenyellow;">
+                        <div class="card-header text-center">
+                            <p class="card-title"></p>
+                            <p style="font-weight: bold;"><span>Một chiều</span></p>
+                            <p style="font-weight: bold;"><span></span> <span> </span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-9">
+                    {{#if message}}
+                    <p class="text-center mt-5">{{message}}</p>
+                    {{/if}}
+                    <div class="row">
+                        {{#each motChieu}}
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 mt-3">
+                            <div class="card" style="background-color: #E8E8E8;">
+                                <form class="card-header text-center" id="formMotChieu" method="POST" action="/home">
+                                    <p class="card-title" style="font-weight: bold;">{{money this.price}}</p>
+                                    <p style="display: none" class="idTicket">{{this._id}}</p>
+                                    <p style="display: none" class="flightIdMotChieu">{{this.flightId._id}}</p>
+                                    <p>Chỉ còn <span>{{this.availableSeat}}</span> ghế trống</p>
+                                    <p><span>{{converTime this.flightId.hourStart}}</span> --> <span>{{converTime
+                                            this.flightId.hourEnd}}</span></p>
+                                    <button type="button" class="btn buy">đặt</button>
+                                </form>
+                            </div>
+                        </div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+            <hr style="border: 2px solid black;">
+            <div class="row d-flex mt-20">
+                {{#if khuHoi}}
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 mt-3">
+                    <div class="card" style="background-color: greenyellow;">
+                        <div class="card-header text-center">
+                            <p class="card-title"></p>
+                            <p style="font-weight: bold;"><span>Khứ hồi</span></p>
+                            <p style="font-weight: bold;"><span></span> <span> </span></p>
+                        </div>
+                    </div>
+                </div>
+                {{/if}}
+                <div class="col-9">
+                    {{#if messageKhuHoi}}
+                    <p class="text-center mt-5">{{messageKhuHoi}}</p>
+                    {{/if}}
+                    <div class="row">
+                        {{#each khuHoi}}
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 mt-3">
+                            <div class="card" style="background-color: #E8E8E8;">
+                                <form class="card-header text-center" id="formKhuHoi" method="POST" action="/home">
+                                    <p class="card-title" style="font-weight: bold;">{{money this.price}}</p>
+                                    <p style="display: none" class="idTicketKhuHoi">{{this._id}}</p>
+                                    <p style="display: none" class="flightIdKhuHoi">{{this.flightId._id}}</p>
+                                    <p>Chỉ còn <span>{{this.availableSeat}}</span> ghế trống</p>
+                                    <p><span>{{converTime this.flightId.hourStart}}</span> --> <span>{{converTime
+                                            this.flightId.hourEnd}}</span></p>
+                                    <button type="button" class="btn buyKhuHoi">đặt</button>
+                                </form>
+                            </div>
+                        </div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<form method="POST" name="acceptTicket" style="display: none">
+    <input type="text" id="idTicketOne" name="idTicketOne">
+    <input type="text" id="idTicketTwo" name="idTicketTwo">
+    <input type="text" id="flightIdMotChieu" name="flightIdMotChieu">
+    <input type="text" id="flightIdKhuHoi" name="flightIdKhuHoi">
+</form>
+<script>
+    const formEls = document.querySelectorAll("#formMotChieu");
+    const formKhuHoi = document.querySelectorAll("#formKhuHoi");
+    const timeStartOneLine = document.querySelector('.timeStartOneLine')
+    const timeEndOneLine = document.querySelector('.timeEndOneLine')
+    const timeStartTwoLine = document.querySelector('.timeStartTwoLine')
+    const timeEndTwoLine = document.querySelector('.timeEndTwoLine')
+    const typeTicket = document.querySelector('.typeTicket').innerHTML
+    const cardMotChieu = document.querySelector('.cardMotChieu')
+    const cardKhuHoi = document.querySelector('.cardKhuHoi')
+    const mainIdTicketOneLine = document.getElementById('mainIdTicketOneLine')
+    const mainIdTicketTwoLine = document.getElementById('mainIdTicketTwoLine')
+    const acceptTicket = document.getElementById('accept')
+    const idTicketOne = document.getElementById('idTicketOne')
+    const idTicketTwo = document.getElementById('idTicketTwo')
+    const formSubmit = document.forms['acceptTicket']
+    const type = document.getElementById('type')
+    const flightMotChieu = document.getElementById('flightIdMotChieu')
+    const flightKhuHoi = document.getElementById('flightIdKhuHoi')
+    let flightIdMotChieu = document.querySelector('.flightIdMotChieu')
+    let flightIdKhuHoi = document.querySelector('.flightIdKhuHoi')
+
+    // Kiểm tra xem có tồn tại thẻ hay không, nếu có mới lấy giá trị
+    if (flightIdMotChieu !== null) {
+        flightIdMotChieu = flightIdMotChieu.innerHTML
+        console.log(flightIdMotChieu)
+    }
+
+    // Kiểm tra xem có tồn tại thẻ hay không, nếu có mới lấy giá trị
+    if (flightIdKhuHoi !== null) {
+        flightIdKhuHoi = flightIdKhuHoi.innerHTML
+        console.log(flightIdKhuHoi)
+    }
+
+    // Convertime sang 12/24
+    function converTime(date) {
+        const data = new Date(date)
+        return data.toLocaleTimeString('en-US', { hour12: true });
+    }
+
+    // Lap qua cac ve va gan su kien
+    formEls.forEach((formEl) => {
+        const idTicket = formEl.querySelector(".idTicket").innerHTML.trim();
+
+        // Lắng nghe sự kiện click vào nút đặt
+        const buyBtnEl = formEl.querySelector(".btn.buy");
+        buyBtnEl.addEventListener("click", function () {
+            $.ajax({
+                url: 'api/flight/detail/' + idTicket,
+                method: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    // Gán các giá trị cần thiết khi chọn vé
+                    cardMotChieu.style.display = 'block'
+                    timeStartOneLine.innerHTML = converTime(data.flightId.hourStart)
+                    timeEndOneLine.innerHTML = converTime(data.flightId.hourEnd)
+                    mainIdTicketOneLine.innerHTML  = data._id
+                    idTicketOne.value = data._id
+                    flightMotChieu.value = flightIdMotChieu
+                },
+                erorr: function (error) {
+                    console.log(error)
+                }
+            })
+        });
+    });
+
+    formKhuHoi.forEach((temp) => {
+        const idTicket = temp.querySelector(".idTicketKhuHoi").innerHTML.trim();
+
+        // Lắng nghe sự kiện click vào nút đặt
+        const buyBtnEl = temp.querySelector(".btn.buyKhuHoi");
+        buyBtnEl.addEventListener("click", function () {
+            $.ajax({
+                url: 'api/flight/detail/' + idTicket,
+                method: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    if (typeTicket === 'khuhoi') {
+                        cardKhuHoi.style.display = 'block'
+                    }
+                    timeStartTwoLine.innerHTML = converTime(data.flightId.hourStart)
+                    timeEndTwoLine.innerHTML = converTime(data.flightId.hourEnd)
+                    mainIdTicketTwoLine.innerHTML  = data._id
+                    idTicketTwo.value = data._id
+                    flightKhuHoi.value = flightIdKhuHoi
+                },
+                erorr: function (error) {
+                    console.log(error)
+                }
+            })
+        });
+    })
+
+    // Khi đã chọn vé xong thì bắt sự kiện click
+    acceptTicket.addEventListener("click", function() {
+        formSubmit.action = 'api/addTicket'
+        formSubmit.submit()
+    })
+</script>

@@ -1,0 +1,93 @@
+<main id="view-panel">
+	<div class="container-fluid">
+		<div class="col-lg-12">
+			<div class="card">
+				<div class="card-header">
+					<large class="card-title">
+						<b>Chọn khách hàng để xem lịch sử đặt</b>
+					</large>
+				</div>
+				<div class="card-body">
+					<div class="table-responsive">
+						<table class="table table-bordered" id="flight-list">
+							<colgroup>
+								<col width="20%">
+								<col width="15%">
+								<col width="10%">
+								<col width="10%">
+								<col width="10%">
+								<col width="10%">
+								<col width="10%">
+								<col width="10%">
+							</colgroup>
+							<thead>
+								<tr>
+									<th class="text-center">Mã khách hàng</th>
+									<th class="text-center">Tên khách hàng</th>
+									<th class="text-center">Email</th>
+									<th class="text-center">Số điện thoại</th>
+									<th class="text-center">Giới tính</th>
+									<th class="text-center">Ngày sinh</th>
+									<th class="text-center">CMND/CCCD</th>
+								</tr>
+							</thead>
+							<tbody class="table tbody">
+			
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+<script>
+	$(document).ready(function () {
+		// Tìm kiếm nơi để bỏ dữ liệu vào
+		const tbody = $('.table .tbody')
+
+		function convertDate(date) {
+			let data = new Date(date);
+			let day = data.getDate().toString().padStart(2, "0"); // Lấy ngày và định dạng lại chuỗi thành 2 chữ số
+			let month = (data.getMonth() + 1).toString().padStart(2, "0"); // Lấy tháng (lưu ý phải cộng thêm 1 vì tháng trong JavaScript bắt đầu từ 0)
+			let year = data.getFullYear().toString(); // Lấy năm
+			return `${day}-${month}-${year}`; // Tạo chuỗi mới
+		}
+
+		$.ajax({
+			url: '/api/history',
+			method: 'GET',
+			dataType: "json",
+			success: function (response) {
+				// thành công
+				let html = ''
+
+				// lặp qua các customer
+				$.each(response, function (index, item) {
+					let day = convertDate(item.dateOfBirth)
+					html +=
+						`<tr>
+						<td>${item._id}</td>
+						<td>${item.customerName}</td>
+						<td class="text-center">${item.email}</td>
+						<td class="text-center">${item.phoneNumber}</td>
+						<td class="text-center">${item.gender}</td>
+						<td class="text-center">${day}</td>
+						<td class="text-center">${item.identityCard}</td>
+						<td class="text-center">
+						<a href="/admin/history_booked/${item._id}">Chọn</a>
+						</td>
+					</tr>`
+				})
+
+				// append vào bảng
+				tbody.append(html)
+			},
+			error: function (xhr, status, error) {
+				// thất bại
+				console.log(error)
+			}
+		})
+
+	})
+</script>

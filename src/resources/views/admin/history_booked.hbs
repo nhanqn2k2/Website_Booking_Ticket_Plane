@@ -1,0 +1,80 @@
+<main id="view-panel">
+	<div class="container-fluid">
+		<div class="col-lg-12">
+			<div class="card">
+				<div class="card-header">
+					<large class="card-title">
+						<b>Lịch sử đặt vé</b>
+					</large>
+				</div>
+				<div class="card-body">
+					<div class="table-responsive">
+						<table class="table table-bordered" id="flight-list">
+							<colgroup>
+								<col width="20%">
+								<col width="20%">
+								<col width="20%">
+								<col width="20%">
+								<col width="20%">
+							</colgroup>
+							<thead>
+								<tr>
+									<th class="text-center">Mã số vé</th>
+									<th class="text-center">Loại vé</th>
+									<th class="text-center">Mã máy bay</th>
+									<th class="text-center">Mã chuyến bay</th>
+									<th class="text-center">Chi tiết</th>
+								</tr>
+							</thead>
+							<tbody class="table tbody">
+								{{!-- <tr>
+									<td class="text-center">VE06</td>
+									<td class="text-center">Phổ thông</td>
+									<td class="text-center">MB02</td>
+									<td class="text-center">CB02</td>
+									<td class="text-center">
+										<a href="../admin/information_booked">Chi tiết</a>
+									</td>
+								</tr> --}}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+<script>
+	$(document).ready(function () {
+		// lấy id customer
+		const id = window.location.pathname.split("/").pop()
+		const tbody = $('.table .tbody')
+		$.ajax({
+			url: `/api/history/${id}`,
+			method: 'GET',
+			dataType: 'json',
+			success: function (data) {
+				let html = ''
+
+				$.each(data, function(index, item) {
+					html +=
+						`<tr>
+					<td class="text-center">${item._id}</td>
+					<td class="text-center">${item.ticketClass}</td>
+					<td class="text-center">${item.planeId.planeName}</td>
+					<td class="text-center">${item.flightId}</td>
+					<td class="text-center">
+					<a href="/admin/information_booked/${item._id}">Chi tiết</a>
+					</td>
+				</tr>
+				`
+				})
+
+				tbody.append(html)
+			},
+			error: function (error) {
+				console.log(error)
+			}
+		})
+	})
+</script>

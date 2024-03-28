@@ -1,0 +1,270 @@
+<main>
+    <div class="slider-area ">
+        <div class="slider-active">
+            <div class="single-slider hero-overly  slider-height d-flex align-items-center"
+                data-background="img/slider/slider1.png">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-9 col-lg-9 col-md-9">
+                            <div class="hero__caption">
+                                <h1>Find your <span>Next flight!</span> </h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <form action="/searchFlight" class="search-box" method="POST">
+                                <div class="input-form mb-20">
+                                    <input value="{{noidi}}" class="noidi" name="fromPlace" type="text" list="topics" placeholder="Điểm đi ...">
+                                    <datalist id="topics">
+                                        <option></option>
+                                        <option></option>
+                                        <option></option>
+                                        <option></option>
+                                        <option></option>
+                                    </datalist>
+                                </div>
+                                <div class="input-form mb-20">
+                                    <input value="{{noiden}}" class="noiden" name="toPlace" type="text" list="topics1" placeholder="Điểm đến ...">
+                                    <datalist id="topics1">
+                                        <option></option>
+                                        <option></option>
+                                        <option></option>
+                                        <option></option>
+                                        <option></option>
+                                    </datalist>
+                                </div>
+                                <div class="search-form mb-10">
+                                    <a>Ngày đi</a>
+                                </div>
+                                <div class="input-date mb-10">
+                                    <input value="{{ngaydi}}" type="date" name="dateStart">
+                                </div>
+                                <div class="search-form mb-10" id="inputkhuhoi">
+                                    <a>Khứ hồi</a>
+                                </div>
+                                <div class="input-date mb-10" id="inputkhuhoi1">
+                                    <input value="{{ngayden}}" type="date" name="dateRoundTrip">
+                                </div>
+                                <div class="search-form mb-10">
+                                    <a>Hạng ghế</a>
+                                </div>
+                                <div class="select-form mb-10">
+                                    <div class="select-itms">
+                                        <select name="airLight" id="select1">
+                                            <option value="Phổ thông">Phổ thông</option>
+                                            <option value="Thương gia">Thương gia</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="search-form mb-10">
+                                    <a>Loại vé</a>
+                                    <input type="radio" name="typeTicket" value="motchieu" id="motchieu" name="motchieu"
+                                        onclick="check()" {{checked loaive 'motchieu'}} checked> Một chiều<br>
+                                    <input type="radio" name="typeTicket" value="khuhoi" id="khuhoi" name="khuhoi"
+                                        onclick="check()" {{checked loaive 'khuhoi'}}> Khứ hồi<br>
+                                </div>
+                                <div class="search-form mb-10">
+                                    <button type="submit" class="btn btn-primary">Tìm chuyến bay</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="favourite-place place-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-tittle text-center">
+                        <h2>Trải nghiệm FlyTeam</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="single-place mb-30">
+                        <div class="place-img">
+                            <img src="img/flyteam/flyteam1.png" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="single-place mb-30">
+                        <div class="place-img">
+                            <img src="img/flyteam/flyteam2.png" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="single-place mb-30">
+                        <div class="place-img">
+                            <img src="img/flyteam/flyteam3.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="favourite-place place-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-tittle text-center">
+                        <h2>Điểm đến hấp dẫn</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="single-place mb-30">
+                        <div class="place-img">
+                            <img src="img/service/service1.png" alt="">
+                        </div>
+                        <div class="place-cap">
+                            <div class="place-cap-top">
+                                <h3><a href="#">Cầu Bàn Tay Phật, Đà Nẵng</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="single-place mb-30">
+                        <div class="place-img">
+                            <img src="img/service/service2.png" alt="">
+                        </div>
+                        <div class="place-cap">
+                            <div class="place-cap-top">
+                                <h3><a href="#">Ngắm Bình Minh, Đà Lạt</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="single-place mb-30">
+                        <div class="place-img">
+                            <img src="img/service/service3.png" alt="">
+                        </div>
+                        <div class="place-cap">
+                            <div class="place-cap-top">
+                                <h3><a href="#">Tắm Biển, Phú Quốc</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="single-place mb-30">
+                        <div class="place-img">
+                            <img src="img/service/service4.png" alt="">
+                        </div>
+                        <div class="place-cap">
+                            <div class="place-cap-top">
+                                <h3><a href="#">Hồ Hoàn Kiếm, Hà Nội</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="single-place mb-30">
+                        <div class="place-img">
+                            <img src="img/service/service5.png" alt="">
+                        </div>
+                        <div class="place-cap">
+                            <div class="place-cap-top">
+                                <h3><a href="#">Khu Du Lịch Tràng An, Ninh Bình</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="single-place mb-30">
+                        <div class="place-img">
+                            <img src="img/service/service6.png" alt="">
+                        </div>
+                        <div class="place-cap">
+                            <div class="place-cap-top">
+                                <h3><a href="#">Thành Phố Hồ Chí Minh</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="our-services servic-padding">
+        <div class="container">
+            <div class="row d-flex justify-contnet-center">
+                <div class="col-lg-12">
+                    <div class="section-tittle text-center">
+                        <h2>Câu hỏi thường gặp</h2>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
+                    <div class="single-services text-center mb-30">
+                        <div class="place-img">
+                            <img src="img/question/question1.png" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
+                    <div class="single-services text-center mb-30">
+                        <div class="place-img">
+                            <img src="img/question/question2.png" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
+                    <div class="single-services text-center mb-30">
+                        <div class="place-img">
+                            <img src="img/question/question3.png" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
+                    <div class="single-services text-center mb-30">
+                        <div class="place-img">
+                            <img src="img/question/question4.png" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
+                    <div class="single-services text-center mb-30">
+                        <div class="place-img">
+                            <img src="img/question/question5.png" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
+                    <div class="single-services text-center mb-30">
+                        <div class="place-img">
+                            <img src="img/question/question6.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<script src="/js/util/scripts.js"></script>
+<script>
+    function check() {
+        const motChieu = document.getElementById('motchieu')
+        const khuHoi = document.getElementById('khuhoi')
+
+        if (motChieu.checked) {
+            document.getElementById('inputkhuhoi').style.display = 'none';
+            document.getElementById('inputkhuhoi1').style.display = 'none';
+        } else if (khuHoi.checked) {
+            document.getElementById('inputkhuhoi').style.display = 'block';
+            document.getElementById('inputkhuhoi1').style.display = 'block';
+        }
+    }
+    
+    check()
+
+</script>

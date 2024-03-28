@@ -1,0 +1,212 @@
+<div class="col-lg-12">
+    <div class="blog_right_sidebar">
+        <aside class="single_sidebar_widget search_widget">
+            <form action="/search" method="POST">
+                <div class="form-group">
+                    <div class="input-group mb-3">
+                        <input value="{{idTicket}}" type="text" name="ticketId" placeholder="Vui lòng nhập mã số vé" class="form-control">
+                        <div class="input-group-append">
+                            <button class="btn" type="submit"><i class="ti-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </aside>
+    </div>
+</div>
+
+<div>
+    {{#if ticket}}
+    <section class="mt-30">
+        <div class="container">
+            <div class="row d-flex justify-contnet-center border border-dark">
+                <div class="col-lg-12 post-list " style="background-color: #4980f7;">
+                    <div class="media align-items-center">
+                        <div class="media-body">
+                            <h4>Thông tin đặt vé</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 mt-30">
+                    <form id="registerForm" name="sentRegister" novalidate="novalidate" method="POST" action="/search">
+                        <div class="row">
+                            <div class=" col-md-6">
+                                <div class="form-group">
+                                    <p style="font-weight: 500;">Mã số vé: <span style="font-weight: bold;">{{ticket._id}}</span></p>
+                                </div>
+                                <div class="form-group">
+                                    <p style="font-weight: 500;">Tên khách hàng: <span style="font-weight: bold;">{{ticket.customerId.customerName}}</span></p>
+                                </div>
+                                <div class="form-group">
+                                    <p style="font-weight: 500;">Số điện thoại: <span style="font-weight: bold;">{{ticket.customerId.phoneNumber}}</span></p>
+                                </div>
+                                <div class="form-group">
+                                    <p style="font-weight: 500;">Mã máy bay: <spanstyle="font-weight: bold;">{{ticket.planeId.planeName}}</span></p>
+                                </div>
+                                <div class="form-group">
+                                    <p style="font-weight: 500;">Giờ khởi hành: <span style="font-weight: bold;">{{dateTicket ticket.flightId.hourStart}}</span></p>
+                                </div>
+                                <div class="form-group">
+                                    <p style="font-weight: 500;">Giờ đến nơi: <span style="font-weight: bold;">{{dateTicket ticket.flightId.hourEnd}}</span></p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <p style="font-weight: 500;">Nơi khởi hành: <span style="font-weight: bold;">{{location ticket.flightId.fromPlace}}</span></p>
+                                </div>
+                                <div class="form-group">
+                                    <p style="font-weight: 500;">Nơi đến: <span style="font-weight: bold;">{{location ticket.flightId.toPlace}}</span></p>
+                                </div>
+                                <div class="form-group">
+                                    <p style="font-weight: 500;">Số ghế: <span style="font-weight: bold;">{{ticket.seatNumber}}</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    {{/if}}
+    {{#if message}}
+    <p class="text-center text-bold">{{message}}</p>
+    {{/if}}
+</div>
+
+<div class="favourite-place place-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-4 col-lg-4 col-md-6">
+                <div class="single-place mb-30">
+                    <div class="place-img">
+                        <img src="img/service/service1.png" alt="">
+                    </div>
+                    <div class="place-cap">
+                        <div class="place-cap-top">
+                            <h3><a href="#">Cầu Bàn Tay Phật, Đà Nẵng</a></h3>
+                        </div>
+                        <div class="place-cap-bottom">
+                            <ul>
+                                <li><i class="fas fa-map-marker-alt"></i>VietNamese</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-6">
+                <div class="single-place mb-30">
+                    <div class="place-img">
+                        <img src="img/service/service2.png" alt="">
+                    </div>
+                    <div class="place-cap">
+                        <div class="place-cap-top">
+                            <h3><a href="#">Ngắm Bình Minh, Đà Lạt</a></h3>
+                        </div>
+                        <div class="place-cap-bottom">
+                            <ul>
+                                <li><i class="fas fa-map-marker-alt"></i>VietNamese</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-6">
+                <div class="single-place mb-30">
+                    <div class="place-img">
+                        <img src="img/service/service3.png" alt="">
+                    </div>
+                    <div class="place-cap">
+                        <div class="place-cap-top">
+                            <h3><a href="#">Tắm Biển, Phú Quốc</a></h3>
+                        </div>
+                        <div class="place-cap-bottom">
+                            <ul>
+                                <li><i class="fas fa-map-marker-alt"></i>VietNamese</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-6">
+                <div class="single-place mb-30">
+                    <div class="place-img">
+                        <img src="img/service/service4.png" alt="">
+                    </div>
+                    <div class="place-cap">
+                        <div class="place-cap-top">
+                            <h3><a href="#">Hồ Hoàn Kiếm, Hà Nội</a></h3>
+                        </div>
+                        <div class="place-cap-bottom">
+                            <ul>
+                                <li><i class="fas fa-map-marker-alt"></i>VietNamese</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-6">
+                <div class="single-place mb-30">
+                    <div class="place-img">
+                        <img src="img/service/service5.png" alt="">
+                    </div>
+                    <div class="place-cap">
+                        <div class="place-cap-top">
+                            <h3><a href="#">Khu Du Lịch Tràng An, Ninh Bình</a></h3>
+                        </div>
+                        <div class="place-cap-bottom">
+                            <ul>
+                                <li><i class="fas fa-map-marker-alt"></i>VietNamese</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-6">
+                <div class="single-place mb-30">
+                    <div class="place-img">
+                        <img src="img/service/service6.png" alt="">
+                    </div>
+                    <div class="place-cap">
+                        <div class="place-cap-top">
+                            <h3><a href="#">Thành Phố Hồ Chí Minh</a></h3>
+                        </div>
+                        <div class="place-cap-bottom">
+                            <ul>
+                                <li><i class="fas fa-map-marker-alt"></i>VietNamese</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="pb-100 text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <nav class="blog-pagination justify-content-center d-flex">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a href="#" class="page-link" aria-label="Previous">
+                                <i class="ti-angle-left"></i>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a href="#" class="page-link">1</a>
+                        </li>
+                        <li class="page-item">
+                            <a href="#" class="page-link">2</a>
+                        </li>
+                        <li class="page-item">
+                            <a href="#" class="page-link" aria-label="Next">
+                                <i class="ti-angle-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>

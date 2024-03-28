@@ -1,0 +1,48 @@
+<main id="main" class=" bg-dark">
+    <div class="background">
+    </div>
+    <div class="login">
+        <div class="card col-md-8">
+            <div class="card-body">
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="email" class="control-label">Email</label>
+                        <input type="email" id="email" name="email" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="control-label">Password</label>
+                        <input type="password" id="password" name="password" class="form-control">
+                    </div>
+                    <center><a href="./home" class="btn-sm btn-block btn-wave col-md-4 btn-primary">Login</a></center>
+                    {{!-- <center><button class="btn-sm btn-block btn-wave col-md-4 btn-primary">Login</button></center> --}}
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<style>
+
+
+    .login {
+        position: absolute;
+        width: 60%;
+        height: calc(100%);
+        display: flex;
+        align-items: center;
+        left: 30%;
+    }
+
+    .background {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: calc(100%);
+        display: flex;
+        align-items: center;
+        background: url(/img/slider/slider1.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>

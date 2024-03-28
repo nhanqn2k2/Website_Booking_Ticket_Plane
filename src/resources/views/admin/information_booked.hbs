@@ -1,0 +1,128 @@
+<main id="view-panel">
+	<div class="container-fluid">
+		<div class="col-lg-12">
+			<div class="card">
+				<div class="card-header">
+					<large class="card-title">
+						<b>Chi tiết thông tin vé</b>
+					</large>
+				</div>
+				<div class="card-body">
+					<div class="table-responsive">
+						<table class="table table-bordered" id="flight-list">
+							<colgroup>
+								<col width="10%">
+								<col width="10%">
+								<col width="15%">
+								<col width="10%">
+								<col width="15%">
+								{{!-- <col width="15%"> --}}
+								<col width="15%">
+								<col width="15%">
+							</colgroup>
+							<thead>
+								<tr>
+									<th class="text-center">Mã số vé</th>
+									<th class="text-center">Số ghế</th>
+									<th class="text-center">Loại vé</th>
+									<th class="text-center">Mã máy bay</th>
+									<th class="text-center">Mã khách hàng</th>
+									<th class="text-center">Mã chuyến bay</th>
+									<th class="text-center">Giá vé</th>
+								</tr>
+							</thead>
+							<tbody class="table tbody">
+						
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<div class="card-body">
+					<div class="table-responsive">
+						<table class="table table-bordered" id="flight-list">
+							<colgroup>
+								<col width="15%">
+								<col width="15%">
+								<col width="10%">
+								<col width="10%">
+								<col width="15%">
+							</colgroup>
+							<thead>
+								<tr>
+									<th class="text-center">Giờ khởi hành</th>
+									<th class="text-center">Giờ đến nơi</th>
+									<th class="text-center">Nơi khởi hành</th>
+									<th class="text-center">Nơi đến</th>
+									<th class="text-center">Quãng đường</th>
+								</tr>
+							</thead>
+							<tbody class="table detail">
+						
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+<script>
+	$(document).ready(function () {
+
+		// chuyển định dạng tiền từ 1000000 -> 1,000,000 VNĐ
+		function convertPrice(price) {
+			return price.toLocaleString('en-US') + " VNĐ";
+		}
+
+		// function convert date từ cơ sở dữ liệu cho dễ đọc
+		function convertDate(date) {
+			const dates = new Date(date);
+            const year = dates.getFullYear();
+        	const month = ('0' + (dates.getMonth() + 1)).slice(-2);
+            const day = ('0' + dates.getDate()).slice(-2);
+            const time = dates.toLocaleTimeString('en-US', { hour12: true })
+            return `${day}-${month}-${year}/ ${time}`;
+		}
+
+		// tách lấy id từ đường dẫn
+		const id = window.location.pathname.split("/").pop()
+		const tbody = $('.table .tbody')
+		const detailTicket = $('.table .detail')
+		$.ajax({
+			url: `/api/history/detail/${id}`,
+			method: 'GET',
+			dataType: 'json',
+			success: function (data) {
+				const price = convertPrice(data.ticketPrice)
+				const dateStart = convertDate(data.flightId.hourStart)
+				const dateEnd = convertDate(data.flightId.hourEnd)
+				let html =
+						`<tr>
+							<td class="text-center">${data._id}</td>
+							<td class="text-center">${data.seatNumber}</td>
+							<td class="text-center">${data.ticketClass}</td>
+							<td class="text-center">${data.planeId.planeName}</td>
+							<td class="text-center">${data.customerId}</td>
+							<td class="text-center">${data.flightId._id}</td>
+							<td class="text-center">${price}</td>
+						</tr>`
+
+				let detail = 
+						`<tr>
+							<td class="text-center">${dateStart}</td>
+							<td class="text-center">${dateEnd}</td>
+							<td class="text-center">${data.flightId.fromPlace}</td>
+							<td class="text-center">${data.flightId.toPlace}</td>
+							<td class="text-center">${data.flightId.distance + ' km'}</td>
+						</tr>`
+				
+				tbody.append(html)
+				detailTicket.append(detail)
+			},
+			error: function (error) {
+				console.log(error)
+			}
+		})
+	})
+</script>

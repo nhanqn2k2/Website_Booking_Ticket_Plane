@@ -1,0 +1,183 @@
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<main id="view-panel">
+	<div class="container-fluid">
+		<div class="col-lg-12">
+			<div class="card">
+				<div class="card-header">
+					<large class="card-title">
+						<b>Nhập thông tin chuyến bay</b>
+					</large>
+				</div>
+				<p style="display: none" id="flightId">{{flight.flightId._id}}</p>
+				<p style="display: none" id="detailId">{{flight.airLightId._id}}</p>
+				<form id="manage-flight" name="formPlane" method="POST">
+					<div class="col-12 col-md-4 offset-md-4 mt-2" id="serial">
+						<div class="">
+							<label for="">Seri chuyến bay</label>
+							<input type="text" name="detailId" id="seri" class="form-control" value="{{flight._id}}" readonly>
+						</div>
+					</div>
+					<div class="row form-group mt-3">
+						<div class="col-md-6">
+							<div class="">
+								<label for="">Ngày/ giờ khởi hành</label>
+								<input type="datetime-local" name="dateStart" id="departure_datetime"
+									class="form-control" value="{{dateTime flight.flightId.hourStart gioKhoiHanh}}">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="">
+								<label for="">Ngày/giờ hạ cánh</label>
+								<input type="datetime-local" name="hourEnd" id="arrival_datetime" class="form-control"
+									value="{{dateTime flight.flightId.hourEnd gioDen}}">
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="" class="control-label">Chọn hạng chuyến bay</label>
+								<select onchange="calculateDistance()" name="airline" id="airline"
+									class="custom-select browser-default select2">
+									<option value="Phổ thông" {{selected flight.airLightId.rank 'Phổ thông' }}>Phổ thông
+									</option>
+									<option value="Thương gia" {{selected flight.airLightId.rank 'Thương gia' }}>Thương
+										gia</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-6">
+							{{#if plane}}
+							<div class="form-group">
+								<label for="" class="control-label">Chọn máy bay</label>
+								<select name="plane" id="plane" class="custom-select browser-default select2">
+									{{#each plane}}
+									<option value="{{this.planeName}}">{{this.planeName}}
+									</option>
+									{{/each}}
+								</select>
+							</div>
+							{{/if}}
+
+							{{#if planeName}}
+							<div class="form-group">
+								<label for="" class="control-label">Chọn máy bay</label>
+								<select name="plane" id="plane" class="custom-select browser-default select2">
+									<option {{selected planeName planeName }}>{{planeName}}
+									</option>
+								</select>
+							</div>
+							{{/if}}
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="col-md-6">
+							<div class="">
+								<div class="input-form mb-20">
+									<input onchange="calculateDistance()" name="fromPlace" id="noidi"
+										value="{{chooseOne flight.flightId.fromPlace noidi}}"
+										class="noidi custom-select browser-default select2" type="text" list="topics"
+										placeholder="Nơi đi ...">
+									<datalist id="topics">
+										<option></option>
+										<option></option>
+										<option></option>
+										<option></option>
+										<option></option>
+									</datalist>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="">
+								<div class="input-form mb-20">
+									<input name="toPlace" onchange="calculateDistance()" id="noiden"
+										value="{{chooseOne flight.flightId.toPlace noiden}}"
+										class="noiden custom-select browser-default select2" type="text" list="topics1"
+										placeholder="Điểm đến ...">
+									<datalist id="topics1">
+										<option></option>
+										<option></option>
+										<option></option>
+										<option></option>
+										<option></option>
+									</datalist>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 total_seat">
+							<div class="">
+								<label for="">Tổng số ghế</label>
+								<input name="total_seat" id="total_seat" type="number" step="any" class="form-control"
+									value="{{flight.totalSeat}}">
+							</div>
+						</div>
+						<div class="col-md-6 available_seat">
+							<div class="">
+								<label for="">Số ghế trống</label>
+								<input name="available_seat" id="available_seat" type="number" step="any"
+									class="form-control" value="{{flight.availableSeat}}">
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="">
+								<label for="">Quãng đường (km)</label>
+								<input name="distance" id="distance" type="number" step="any" class="form-control"
+									value="{{flight.flightId.distance}}">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="">
+								<label for="">Giá vé</label>
+								<input name="price" id="price" type="text" step="any" class="form-control"
+									value="{{money flight.price}}">
+							</div>
+						</div>
+					</div>
+					<div class="card-header">
+						<button class="btn btn-primary btn-block col-md-1 float-right" type="submit"
+							id="new_flight">Save</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</main>
+<script src="/js/util/scripts.js"></script>
+<script>
+	const total_seat = document.querySelector('.total_seat')
+	const available_seat = document.querySelector('.available_seat')
+	const formPlane = document.forms['formPlane']
+	const flightId = document.getElementById('flightId').innerHTML
+
+	const departure_datetime = document.getElementById('departure_datetime')
+	const arrival_datetime = document.getElementById('arrival_datetime')
+	const serial = document.getElementById('serial')
+
+	// lấy path name của url đang truy cập
+	const url = window.location.pathname.split("/")[2]
+
+	// nếu là add_plane thì ẩn đi những trường không cần thiết
+	if (url === 'add_plane') {
+		total_seat.style.display = 'none'
+		available_seat.style.display = 'none'
+		departure_datetime.removeAttribute("readonly")
+		arrival_datetime.removeAttribute("readonly")
+		noidi.removeAttribute("readonly")
+		noiden.removeAttribute("readonly")
+		serial.style.display = 'none'
+		formPlane.action = '/admin/add_plane/'
+	} else {
+		departure_datetime.setAttribute("readonly", "readonly");
+		arrival_datetime.setAttribute("readonly", "readonly");
+		noidi.setAttribute("readonly", "readonly");
+		noiden.setAttribute("readonly", "readonly");
+		total_seat.setAttribute("readonly", "readonly");
+		available_seat.setAttribute("readonly", "readonly");
+		formPlane.action = '/admin/update_plane/' + flightId
+	}
+</script>

@@ -1,0 +1,126 @@
+<main id="view-panel">
+    <div class="favourite-place place-padding">
+        <div class="container">
+            <div class="row d-flex justify-contnet-center border border-dark">
+                <div class="col-lg-12 post-list " style="background-color: #4980f7;">
+                    <div class="media align-items-center">
+                        <div class="media-body">
+                            <h4>Thông tin chi tiết</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 mt-30" id="data">
+                    <form id="registerForm" name="sentRegister" novalidate="novalidate" method="POST" action="/search">
+                            {{!-- <div class=" col-md-6">
+                                <div class="form-group">
+                                    <p style="font-weight: 500;">Tên khách hàng: <span style="font-weight: bold;">Nguyễn
+                                            Thái Hoàng</span></p>
+                                </div>
+                                <div class="form-group">
+                                    <p style="font-weight: 500;">Tên đăng nhập: <span
+                                            style="font-weight: bold;">thaihoangcr123</span>
+                                    </p>
+                                </div>
+                                <div class="form-group">
+                                    <p style="font-weight: 500;">Mật khẩu: <span
+                                            style="font-weight: bold;">123456</span>
+                                    </p>
+                                </div>
+                                <div class="form-group">
+                                    <p style="font-weight: 500;">Email: <span
+                                            style="font-weight: bold;">thaihoang@gmail.com</span>
+                                    </p>
+                                </div>
+                                <div class="form-group">
+                                    <p style="font-weight: 500;">Số điện thoại: <span
+                                            style="font-weight: bold;">0915137869</span></p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <p style="font-weight: 500;">Giới tính: <span style="font-weight: bold;">Nam</span>
+                                    </p>
+                                </div>
+                                <div class="form-group">
+                                    <p style="font-weight: 500;">Ngày sinh: <span
+                                            style="font-weight: bold;">03/08/2002</span>
+                                    </p>
+                                </div>
+                            </div> --}}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<script>
+    $(document).ready(function () {
+        function convertDate(date) {
+            const data = new Date(date)
+            const day = data.getDate() <= 9 ? '0' + data.getDate() : data.getDate()
+            const month = data.getMonth() + 1 <= 9 ? '0' + (data.getMonth() + 1) : data.getMonth() + 1
+            const year = data.getFullYear()
+            return `${day}-${month}-${year}`
+        }
+
+        const dataBody = $('#registerForm')
+        // Lấy ra id từ dường dẫn
+        const id = window.location.pathname.split("/").pop()
+        $.ajax({
+            url: '/api/customer/detail/' + id,
+            method: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                console.log(data)
+                let html =
+                        `<div class="row mt-3">
+                            <div class=" col-md-6">
+                                <div class="form-group">
+                                    <p style="font-weight: 500;">Tên khách hàng: <span style="font-weight: bold;">${data.data[0].customerId.customerName}</span></p>
+                                </div>
+                                <div class="form-group">
+                                    <p style="font-weight: 500;">Ngày sinh: <span
+                                            style="font-weight: bold;">${convertDate(data.data[0].customerId.dateOfBirth)}</span>
+                                    </p>
+                                </div>
+                                <div class="form-group">
+                                    <p style="font-weight: 500;">Email: <span
+                                            style="font-weight: bold;">${data.data[0].customerId.email}</span>
+                                    </p>
+                                </div>
+                                <div class="form-group">
+                                    <p style="font-weight: 500;">Số điện thoại: <span
+                                            style="font-weight: bold;">${data.data[0].customerId.phoneNumber}</span>
+                                    </p>
+                                </div>
+                                <div class="form-group">
+                                    <p style="font-weight: 500;">CMND/ CCCD: <span
+                                            style="font-weight: bold;">${data.data[0].customerId.identityCard}</span></p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <p style="font-weight: 500;">Giới tính: <span style="font-weight: bold;">${data.data[0].customerId.gender}</span>
+                                    </p>
+                                </div>
+                                <div class="form-group">
+                                    <p style="font-weight: 500;">Địa chỉ: <span
+                                            style="font-weight: bold;">${data.data[0].customerId.address}</span>
+                                    </p>
+                                </div>
+                                <div class="form-group">
+                                    <p style="font-weight: 500;">Số lượt mua vé: <span
+                                            style="font-weight: bold;">${data.count}</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        `
+                dataBody.append(html)
+            },
+            error: function (error) {
+                console.log(error)
+            }
+        })
+    })
+</script>

@@ -1,0 +1,67 @@
+<main id="view-panel">
+	<div class="container-fluid">
+		<div class="col-lg-12">
+			<div class="card">
+				<div class="card-header">
+					<large class="card-title">
+						<b>Quản lý chuyến bay</b>
+					</large>
+					<button class="btn btn-primary btn-block col-md-2 float-right" type="button" id="new_flight"><a
+							href="/admin/add_plane" class="text-white"><i class="fa fa-plus"></i> Thêm chuyến
+							bay</a></button>
+				</div>
+				<div class="card-body">
+					<div class="table-responsive">
+						<table class="table table-bordered" id="flight-list">
+							<colgroup>
+								<col width="10%">
+								<col width="10%">
+								<col width="10%">
+								<col width="10%">
+								<col width="10%">
+								<col width="10%">
+								<col width="10%">
+								<col width="10%">
+								<col width="10%">
+								<col width="10%">
+							</colgroup>
+							<thead>
+								<tr>
+									<th class="text-center">MCB</th>
+									<th class="text-center">Ngày bay</th>
+									<th class="text-center">Nơi đi</th>
+									<th class="text-center">Nơi đến</th>
+									<th class="text-center">Tổng số ghế</th>
+									<th class="text-center">Số ghế trống</th>
+									<th class="text-center">Giờ khởi hành</th>
+									<th class="text-center">Giờ hạ cánh</th>
+									<th class="text-center">Quãng đường</th>
+								</tr>
+							</thead>
+							<tbody>
+								{{#each data}}
+								<tr>
+									<td>{{this._id}}</td>
+									<td>{{dayFormat this.dateStart}}</td>
+									<td class="text-center">{{this.fromPlace}}</td>
+									<td class="text-center">{{this.toPlace}}</td>
+									<td class="text-center">{{this.totalSeat}}</td>
+									<td class="text-center">{{this.availableSeat}}</td>
+									<td class="text-center">{{converTime this.hourStart}}</td>
+									<td class="text-center">{{converTime this.hourEnd}}</td>
+									<td class="text-center">{{distance this.distance}}</td>
+									<td class="text-center">
+										<a href="./update_plane/{{this._id}}"><button
+												class="btn btn-outline-primary btn-sm edit_flight" type="button"><i
+													class="fa fa-edit"></i></button></a>
+									</td>
+								</tr>
+								{{/each}}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>

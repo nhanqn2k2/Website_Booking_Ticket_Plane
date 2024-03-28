@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<title>{{title}}</title>
+
+	<link
+		href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+		rel="stylesheet">
+	<link rel="stylesheet" href="/admincss/all.min.css">
+	<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/admincss/style.css" rel="stylesheet">
+	<link type="text/css" rel="stylesheet" href="/admincss/jquery-te-1.4.0.css">
+	<script src="/vendor/jquery/jquery.min.js"></script>
+
+
+	<script type="text/javascript" src="/adminjs/all.min.js"></script>
+	<script type="text/javascript" src="/adminjs/bootstrap.bundle.min.js"></script>
+	<style>
+		td {
+			vertical-align: middle !important;
+		}
+
+		td p {
+			margin: unset
+		}
+
+		img {
+			max-width: 100px;
+			max-height: 150px;
+		}
+
+		.logo {
+			margin: auto;
+			font-size: 20px;
+			background: white;
+			padding: 7px 11px;
+			border-radius: 50% 50%;
+			color: #000000b3;
+		}
+	</style>
+
+
+</head>
+
+<body>
+	<nav class="navbar navbar-light fixed-top bg-primary py-3" style="padding:0;">
+		<div class="container-fluid">
+			<div class="col-md-2 float-md-right text-white text-right">
+				<a href="/" class="text-white">Admin<i class="fa fa-power-off"></i></a>
+			</div>
+		</div>
+	</nav>
+
+	<nav id="sidebar" class='bg-dark'>
+		<div class="sidebar-list">
+			<a href="/admin/home" class="nav-item nav-home">Trang chủ</a>
+			<a href="/admin/manage_plane" class="nav-item nav-booked">Quản lý chuyến bay</a>
+			<a href="/admin/manage_user" class="nav-item nav-flights">Quản lý khách hàng</a>
+			<a href="/admin/history_plane" class="nav-item nav-airport">Quản lý lịch sử mua</a>
+			<a href="/admin/manage_sales" class="nav-item nav-airport">Thống kê thu nhập</a>
+		</div>
+	</nav>
+	{{#if success_messages}}
+	<div id="myAlert" style="text-align: center; margin-top: 60px; width: 300px; left: 80%" class="alert alert-success">
+		<a href="#" id="linkClose" class="close" name="close">&times;</a>
+		<strong>{{success_messages}}</strong>
+	</div>
+	{{/if}}
+	{{#if error_messages}}
+	<div id="myAlert" style="text-align: center; margin-top: 60px; width: 300px; left: 80%" class="alert alert-danger">
+		<a href="#" id="linkClose" class="close" name="close">&times;</a>
+		<strong>{{error_messages}}</strong>
+	</div>
+	{{/if}}
+	{{{body}}}
+</body>
+
+</html>
+<script>
+	document.addEventListener('keydown', function (event) {
+		if (event.altKey && event.key === 'z') {
+			window.location.href = '/admin/manage_plane';
+		} else if (event.altKey && event.key === 'x') {
+			window.location.href = '/admin/manage_user';
+		} else if (event.altKey && event.key === 'c') {
+			window.location.href = '/admin/history_plane';
+		} else if (event.altKey && event.key === 'v') {
+			window.location.href = '/admin/manage_sales';
+		} else if (event.key === 'Escape') {
+			history.back()
+		}
+
+	});
+
+	$(document).ready(function () {
+		$('#myAlert').show('fade');
+		setTimeout(function () {
+			$('#myAlert').hide('fade');
+		}, 2000);
+		$('#linkClose').click(function () {
+			$('#myAlert').hide('fade');
+		})
+	})
+
+
+
+</script>

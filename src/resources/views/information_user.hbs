@@ -1,0 +1,42 @@
+<div class="favourite-place place-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-tittle text-center">
+                    <h2>THÔNG TIN CÁ NHÂN</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row d-flex justify-contnet-center border border-dark">
+            <div class="col-lg-12 post-list " style="background-color: #4980f7;">
+                <div class="media align-items-center">
+                    <div class="media-body">
+                        <h4>Thông tin cá nhân</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 mt-30">
+                <form id="registerForm" name="sentRegister" novalidate="novalidate" method="POST" action="/search">
+                    <div class="row">
+                        <div class=" col-md-6">
+                            <div class="form-group">
+                                <p style="font-weight: 500;">Tên khách hàng: <span style="font-weight: bold;">{{myUser.name}}</span></p>
+                            </div>
+                            <div class="form-group">
+                                <p style="font-weight: 500;">Tên đăng nhập: <span style="font-weight: bold;">{{myUser.username}}</span>
+                                </p>
+                            </div>
+                            <div class="form-group">
+                                <p style="font-weight: 500;">Email: <span style="font-weight: bold;">{{myUser.email}}</span>
+                                </p>
+                            </div>
+                            <div class="form-group">
+                                <p style="font-weight: 500;">Số điện thoại: <span style="font-weight: bold;">{{myUser.phoneNumber}}</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
